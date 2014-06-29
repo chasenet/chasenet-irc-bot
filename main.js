@@ -3,40 +3,26 @@ var irc = require('irc'),
 
 var config = require('./config/config.json');
 
-var commandChar = '!';
-var botOwners = [];
-
 function main() {
+
     var ircBot = null;
 
-    if(config && config.length > 0) {
+    // Ensure we can read the config
 
-        for (var i = 0; i < config.length; i++) {
+    ircBot = new irc.Client(config.server, config.botName, config);
 
-            if(config[i].commandChar && config[i].commandChar.length == 1) {
-
-                commandChar = config[i].commandChar;
-
-            }
-
-            botOwners = config[i].botOwners;
-
-            ircBot = new irc.Client(config[i].server, config[i].botName, config[i]);
-        }
-    }
-
+    // Make sure we have an ircBot Client
     if(ircBot != null) {
-
-        // Set up the event listeners
 
         // First connection loop to the server
         ircBot.addListener('registered', function(message) {
+
             console.log(message);
         });
 
         ircBot.addListener('message', function(nick, to, text, message) {
 
-            if(text.substr(0, 1) == commandChar) {
+            if(text.substr(0, 1) == config.commandChar) {
 
                 var command = text.split(' ');
 
@@ -81,7 +67,7 @@ function main() {
 
         // Welcome users on join
         ircBot.addListener('join', function(channel, nick) {
-            if(nick == config[0].botName) {
+            if(nick == config.botName) {
                 ircBot.say(channel, 'Hola!');
             } else {
                 ircBot.say(channel, 'Welcome ' + nick + '!');

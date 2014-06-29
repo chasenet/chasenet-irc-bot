@@ -1,4 +1,4 @@
-[{
+{
     "server": "irc.darkscience.net",
     "port": 6697,
     "botName": "ChaseBot",
@@ -25,4 +25,4 @@
     "messageSplit": 512,
     "username" : "ChaseBot",
     "realName" : "ChaseBot"
-}]
+}
