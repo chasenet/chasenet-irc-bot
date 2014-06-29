@@ -12,31 +12,38 @@ function main() {
     if(config && config.length > 0) {
 
         for (var i = 0; i < config.length; i++) {
-
-            console.log(config[i]);
-
             ircBot = new irc.Client(config[i].server, config[i].botName, config[i]);
-
-            ircBot.connect();
-
-            for(var x = 0; x < config[i].channels.length; x++) {
-                console.log(x);
-                ircBot.join(config[i].channels[x], function() {
-                    console.log("Joined Channel.");
-                });
-            }
         }
     }
 
     if(ircBot != null) {
 
-        var connected = ircBot.connect();
+        // Set up the event listeners
+        ircBot.addListener("registered", function(message) {
+            console.log(message);
+        });
 
-        console.log(connected);
+        ircBot.addListener("motd", function(message) {
+            console.log(message);
+        });
 
+        ircBot.addListener("error", function(messages) {
+            //messages is an object?
+            for(var i = 0; i < messages.length; i++) {
+                console.log("ERROR " + messages[i]);
+            }
+        });
 
         ircBot.addListener("join", function(channel, nick) {
-            ircBot.say(channel, "Welcome " + nick + "!");
+            if(nick == config[0].botName) {
+                ircBot.say(channel, "Hola!");
+            } else {
+                ircBot.say(channel, "Welcome " + nick + "!");
+            }
+        });
+
+        ircBot.addListener("end", function() {
+            console.log(arguments);
         });
     }
 }

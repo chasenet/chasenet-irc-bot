@@ -1,7 +1,7 @@
 [{
     "server": "irc.darkscience.net",
     "port": 6697,
-    "botName": "ChaseNET",
+    "botName": "chasenetbot",
     "botOwners": [
         "Mantis",
         "d0gpants",
@@ -12,19 +12,18 @@
         "#bots",
         "#treehouse"
     ],
-    "debug": false,
-    "showErrors": false,
+    "debug": true,
+    "showErrors": true,
     "autoRejoin": true,
-    "autoConnect": true,
-    "secure": false,
-    "selfSigned": false,
-    "certExpired": false,
-    "floodProtection": false,
+    "secure": true,
+    "selfSigned": true,
+    "certExpired": true,
+    "floodProtection": true,
     "floodProtectionDelay": 1000,
     "sasl": false,
     "stripColors": false,
     "channelPrefixes": "&#",
     "messageSplit": 512,
-    "username" : "ChaseNET",
-    "realName" : "ChaseNET IRC Bot"
+    "username" : "chasenetbot",
+    "realName" : "chasenetbot"
 }]
