@@ -1,7 +1,7 @@
 [{
     "server": "irc.darkscience.net",
     "port": 6697,
-    "botName": "chasenetbot",
+    "botName": "ChaseBot",
     "botOwners": [
         "Mantis",
         "d0gpants",
@@ -24,6 +24,6 @@
     "stripColors": false,
     "channelPrefixes": "&#",
     "messageSplit": 512,
-    "username" : "chasenetbot",
-    "realName" : "chasenetbot"
+    "username" : "ChaseBot",
+    "realName" : "ChaseBot"
 }]
