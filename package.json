@@ -1,0 +1,9 @@
+{
+    "name" : "chasenet-irc-bot",
+    "version" : "1.0.0",
+    "description" : "ChaseNet's IRC bot",
+    "main" : "main.js",
+    "dependencies" : {
+        "irc" : ">=0.3.7"
+    }
+}

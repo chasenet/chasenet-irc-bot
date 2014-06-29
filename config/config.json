@@ -2,13 +2,13 @@
     "server": "irc.darkscience.net",
     "port": 6697,
     "botName": "ChaseBot",
+    "commandChar": "!",
     "botOwners": [
         "Mantis",
         "d0gpants",
         "Pillus"
     ],
     "channels": [
-        "#chasenet",
         "#bots"
     ],
     "debug": true,
