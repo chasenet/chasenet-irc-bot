@@ -42,7 +42,7 @@ function main() {
 
                         case 'part' : {
 
-                            if(botOwners.indexOf(nick) > -1) {
+                            if(config.botOwners.indexOf( nick ) > -1) {
 
                                 ircBot.part(command[1]);
 
