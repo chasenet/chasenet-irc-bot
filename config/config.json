@@ -9,8 +9,7 @@
     ],
     "channels": [
         "#chasenet",
-        "#bots",
-        "#treehouse"
+        "#bots"
     ],
     "debug": true,
     "showErrors": true,

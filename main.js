@@ -42,6 +42,10 @@ function main() {
             }
         });
 
+        ircBot.addListener("invite", function(channel, from, message) {
+            ircBot.join(channel);
+        });
+
         ircBot.addListener("end", function() {
             console.log(arguments);
         });
