@@ -4,5 +4,11 @@
         "module_author" : "Richard Clifford",
         "location": "./modules/core/",
         "module_config": "config/config.json"
+    },
+    {
+        "module_name": "blog",
+        "module_author" : "Richard Clifford",
+        "location": "./modules/blog/",
+        "module_config": "config/config.json"
     }
 ]

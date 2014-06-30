@@ -94,13 +94,11 @@ function main() {
     if(modules.length > 0) {
         for(var i = 0; i < modules.length; i++) {
 
-            console.log("Init: " + modules[i].module_name);
-
-            console.log("Calling " + modules[i].module_name + " init hook");
+            console.log('Loading Module: ' + modules[i].module_name);
 
             var module = require(modules[i].location + "main.js");
 
-            module.main(this);
+            module.init(this);
         }
     }
 }

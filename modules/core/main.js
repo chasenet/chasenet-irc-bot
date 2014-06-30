@@ -1,5 +1,5 @@
 module.exports = {
-    main: function(obj) {
+    init: function(obj) {
         console.log("CORE LOADED Yo!");
         this.test('test');
     },
