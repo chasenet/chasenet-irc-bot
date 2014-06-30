@@ -1,5 +1,5 @@
 module.exports = {
     init: function() {
-        console.log('Loaded Blog Module');
+        // watch blog fort updates
     }
 }
