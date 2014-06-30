@@ -3,6 +3,8 @@ var irc = require('irc'),
 
 var config = require('./config/config.json');
 
+var modules = require('./config/modules.json');
+
 function main() {
 
     var ircBot = null;
@@ -26,9 +28,6 @@ function main() {
 
                 var command = text.split(' ');
 
-                // Find command that is needed
-                console.log('Looking for command : ' + command[0]);
-
                 if(command.length >= 2){
 
                     switch(command[0].substr(1)) {
@@ -44,10 +43,17 @@ function main() {
 
                             if(config.botOwners.indexOf( nick ) > -1) {
 
-                                ircBot.part(command[1]);
+                                if(config.channels.indexOf(command[1]) > -1){
 
-                                break;
+                                    ircBot.part(command[1]);
+                                }
+
+                            } else if(config.channels.indexOf(command[1]) == -1) {
+
+                                ircBot.part(command[1]);
                             }
+
+                            break;
                         }
                     }
                 }
@@ -83,6 +89,19 @@ function main() {
         ircBot.addListener('end', function() {
             console.log(arguments);
         });
+    }
+
+    if(modules.length > 0) {
+        for(var i = 0; i < modules.length; i++) {
+
+            console.log("Init: " + modules[i].module_name);
+
+            console.log("Calling " + modules[i].module_name + " init hook");
+
+            var module = require(modules[i].location + "main.js");
+
+            module.main(this);
+        }
     }
 }
 
