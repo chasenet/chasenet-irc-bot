@@ -1,16 +1,28 @@
-var irc = require('irc'),
-    fs = require('fs');
+var irc = require('irc');
 
 var config = require('./config/config.json');
 
 var modules = require('./config/modules.json');
 
+var ircBot = null;
+
+function initModules() {
+    if(modules.length > 0) {
+        for(var i = 0; i < modules.length; i++) {
+
+            console.log('Loading Module: ' + modules[i].module_name);
+
+            var module = require(modules[i].location + "main.js");
+
+            module.init(ircBot);
+        }
+    }
+}
+
 function main() {
 
-    var ircBot = null;
 
     // Ensure we can read the config
-
     ircBot = new irc.Client(config.server, config.botName, config);
 
     // Make sure we have an ircBot Client
@@ -96,16 +108,7 @@ function main() {
         });
     }
 
-    if(modules.length > 0) {
-        for(var i = 0; i < modules.length; i++) {
-
-            console.log('Loading Module: ' + modules[i].module_name);
-
-            var module = require(modules[i].location + "main.js");
-
-            module.init(ircBot);
-        }
-    }
+    initModules();
 }
 
 main();
