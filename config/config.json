@@ -11,8 +11,8 @@
     "channels": [
         "#bots"
     ],
-    "debug": true,
-    "showErrors": true,
+    "debug": false,
+    "showErrors": false,
     "autoRejoin": true,
     "secure": true,
     "selfSigned": true,

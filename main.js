@@ -30,32 +30,37 @@ function main() {
 
                 if(command.length >= 2){
 
-                    switch(command[0].substr(1)) {
+                    // Ensure the channel name starts with a #
+                    if(command[1].substr(0,1) == '#') {
 
-                        case 'join': {
+                        switch(command[0].substr(1)) {
 
-                            ircBot.join(command[1]);
+                            case 'join': {
 
-                            break;
-                        }
+                                ircBot.join(command[1]);
 
-                        case 'part' : {
+                                break;
+                            }
 
-                            if(config.botOwners.indexOf( nick ) > -1) {
+                            case 'part' : {
 
-                                if(config.channels.indexOf(command[1]) > -1){
+                                if(config.botOwners.indexOf( nick ) > -1) {
+
+                                    if(config.channels.indexOf(command[1]) > -1){
+
+                                        ircBot.part(command[1]);
+                                    }
+
+                                } else if(config.channels.indexOf(command[1]) == -1) {
 
                                     ircBot.part(command[1]);
                                 }
 
-                            } else if(config.channels.indexOf(command[1]) == -1) {
-
-                                ircBot.part(command[1]);
+                                break;
                             }
-
-                            break;
                         }
                     }
+
                 }
             }
         });
