@@ -19,8 +19,28 @@ function initModules() {
     }
 }
 
-function main() {
+function reloadModules() {
 
+    if(modules.length > 0) {
+
+        // delete require.cache;
+
+        for(var i = 0; i < modules.length; i++) {
+
+            var cacheItem = require.resolve(modules[i].location + "main.js");
+
+            console.log(["Before", require.cache[cacheItem]]);
+
+            delete require.cache[cacheItem];
+
+            console.log(["after",require.cache[cacheItem]]);
+        }
+        console.log("Reinitializing modules");
+        // initModules();
+    }
+}
+
+function main() {
 
     // Ensure we can read the config
     ircBot = new irc.Client(config.server, config.botName, config);
@@ -39,6 +59,15 @@ function main() {
             if(text.substr(0, 1) == config.commandChar) {
 
                 var command = text.split(' ');
+
+                switch(command[0].substr(1)) {
+                    case 'reload': {
+
+                        reloadModules();
+
+                        break;
+                    }
+                }
 
                 if(command.length >= 2){
 
