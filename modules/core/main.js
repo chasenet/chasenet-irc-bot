@@ -1,9 +1,9 @@
 module.exports = {
-    init: function(obj) {
-        console.log("CORE LOADED Yo!");
-        this.test('test');
-    },
-    test: function(str) {
-        console.log(str);
+    init: function(ircBot) {
+
+        // Let's extend the functionality of our message event listener
+        ircBot.addListener('message', function(nick, to, text, message){
+            console.log(nick + ' : ' + to + ' : ' + text);
+        });
     }
 };

@@ -98,7 +98,7 @@ function main() {
 
             var module = require(modules[i].location + "main.js");
 
-            module.init(this);
+            module.init(ircBot);
         }
     }
 }
