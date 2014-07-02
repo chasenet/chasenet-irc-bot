@@ -1,5 +1,7 @@
 module.exports = {
-    init: function() {
-        // watch blog fort updates
+    init: function(ircBot) {
+        ircBot.addListener('message', function(nick, to, text, message){
+            console.log(to + ' ' + nick + ': ' + text);
+        });
     }
 }

@@ -1,4 +1,8 @@
 var irc = require('irc');
+    // process = require('process');
+    // child_process = require('child_process');
+
+// var reload = require('reload');
 
 var config = require('./config/config.json');
 
@@ -8,35 +12,14 @@ var ircBot = null;
 
 function initModules() {
     if(modules.length > 0) {
-        for(var i = 0; i < modules.length; i++) {
+        modules.forEach(function(item) {
 
-            console.log('Loading Module: ' + modules[i].module_name);
+            console.log('Loading Module: ' + item.module_name);
 
-            var module = require(modules[i].location + "main.js");
+            var module = require(item.location + "main.js");
 
             module.init(ircBot);
-        }
-    }
-}
-
-function reloadModules() {
-
-    if(modules.length > 0) {
-
-        // delete require.cache;
-
-        for(var i = 0; i < modules.length; i++) {
-
-            var cacheItem = require.resolve(modules[i].location + "main.js");
-
-            console.log(["Before", require.cache[cacheItem]]);
-
-            delete require.cache[cacheItem];
-
-            console.log(["after",require.cache[cacheItem]]);
-        }
-        console.log("Reinitializing modules");
-        // initModules();
+        });
     }
 }
 
@@ -63,7 +46,22 @@ function main() {
                 switch(command[0].substr(1)) {
                     case 'reload': {
 
-                        reloadModules();
+                        if(modules.length > 0) {
+
+                            modules.forEach(function(item) {
+
+                                var cacheItem = require.resolve(item.location + "main.js");
+
+                                if(item.id == cacheItem) {
+
+                                    delete require.cache[cacheItem];
+                                }
+                            });
+
+                            initModules();
+
+                            console.log("Reinitializing modules");
+                        }
 
                         break;
                     }
@@ -101,7 +99,6 @@ function main() {
                             }
                         }
                     }
-
                 }
             }
         });
