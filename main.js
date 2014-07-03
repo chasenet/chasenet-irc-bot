@@ -134,7 +134,8 @@ function main() {
             if(nick == config.botName) {
                 ircBot.say(channel, 'Hola!');
             } else {
-                if(nick != 'GitHub') {
+                var n = nick.toLowerCase();
+                if(config.default_ignore_nicks.indexOf(n) == -1 ) {
                     ircBot.say(channel, 'Welcome ' + nick + '!');
                 }
             }

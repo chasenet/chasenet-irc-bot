@@ -11,6 +11,11 @@
     "channels": [
         "#bots"
     ],
+    "default_ignore_nicks" : [
+        "taylor",
+        "github",
+        "cardinal"
+    ],
     "debug": true,
     "showErrors": true,
     "autoRejoin": true,
