@@ -24,9 +24,16 @@ function main() {
 
     // Make sure we have an ircBot Client
     if(ircBot != null) {
-        initModules();
-    }
 
+        initModules();
+
+        ircBot.addListener('message', function(nick, to, text, message) {
+
+            var command = text.split(' ');
+
+
+        });
+    }
 }
 
 main();

@@ -13,6 +13,7 @@ Commands so far:
 
 * !help
 
+* !ignore nick
 
 
 Module Creation
