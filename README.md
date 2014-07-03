@@ -6,8 +6,11 @@ Node JS IRC Bot written by the ChaseNET team.
 Commands so far:
 ----------------
 -- !shellcode [keywords to search for]
+
 -- !join #channel
+
 -- !part #channel
+
 
 
 Module Creation
@@ -18,11 +21,12 @@ Module Creation
 4. Ensure that the module uses module.exports and has the property of "init" which should be your constructor method which should accept the argument "ircBot" if you want to extend the existing functionality
 
 **Example**
-module.exports = {
 
-    init: function(ircBot) {
-        ircBot.addListener('message', function(nick, to, text, message) {
-            console.log([nick, to, text, message]);
-        });
+    module.exports = {
+
+        init: function(ircBot) {
+            ircBot.addListener('message', function(nick, to, text, message) {
+                console.log([nick, to, text, message]);
+            });
+        }
     }
-}
