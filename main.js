@@ -134,7 +134,9 @@ function main() {
             if(nick == config.botName) {
                 ircBot.say(channel, 'Hola!');
             } else {
-                ircBot.say(channel, 'Welcome ' + nick + '!');
+                if(nick != 'GitHub') {
+                    ircBot.say(channel, 'Welcome ' + nick + '!');
+                }
             }
         });
 
