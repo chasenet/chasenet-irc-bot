@@ -5,11 +5,13 @@ Node JS IRC Bot written by the ChaseNET team.
 
 Commands so far:
 ----------------
--- !shellcode [keywords to search for]
+* !shellcode [keywords to search for]
 
--- !join #channel
+* !join #channel
 
--- !part #channel
+* !part #channel
+
+* !help
 
 
 
