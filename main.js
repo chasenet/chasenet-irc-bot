@@ -1,12 +1,6 @@
-var irc = require('irc');
-    // process = require('process');
-    // child_process = require('child_process');
-
-// var reload = require('reload');
-
-var config = require('./config/config.json');
-
-var modules = require('./config/modules.json');
+var irc = require('irc'),
+    config = require('./config/config.json'),
+    modules = require('./config/modules.json');
 
 var ircBot = null;
 
