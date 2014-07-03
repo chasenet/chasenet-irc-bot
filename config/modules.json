@@ -24,7 +24,7 @@
         "module_author" : "Richard Clifford",
         "location": "./modules/shell-storm/",
         "commands": {
-            "shellcode": ["..."]
+            "shellcode": ["[keyword to search for]"]
         }
     }
 ]

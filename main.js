@@ -46,21 +46,25 @@ function main() {
                 switch(command[0].substr(1)) {
                     case 'reload': {
 
-                        if(modules.length > 0) {
+                        // Disabled until further notice.
+                        if(0) {
 
-                            modules.forEach(function(item) {
+                            if(modules.length > 0) {
 
-                                var cacheItem = require.resolve(item.location + "main.js");
+                                modules.forEach(function(item) {
 
-                                if(item.id == cacheItem) {
+                                    var cacheItem = require.resolve(item.location + "main.js");
 
-                                    delete require.cache[cacheItem];
-                                }
-                            });
+                                    if(item.id == cacheItem) {
 
-                            initModules();
+                                        delete require.cache[cacheItem];
+                                    }
+                                });
 
-                            console.log("Reinitializing modules");
+                                initModules();
+
+                                console.log("Reinitializing modules");
+                            }
                         }
 
                         break;
@@ -70,7 +74,7 @@ function main() {
 
                             for (var key in item.commands) {
                                 if (item.commands.hasOwnProperty(key)) {
-                                    ircBot.say(nick, config.commandChar + key + " " + item.commands[key]);
+                                    ircBot.say(nick , config.commandChar + key + " " + item.commands[key]);
                                 }
                             }
 
