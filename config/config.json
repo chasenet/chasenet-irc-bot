@@ -28,6 +28,6 @@
     "stripColors": false,
     "channelPrefixes": "&#",
     "messageSplit": 512,
-    "username" : "ChaseBot",
+    "userName" : "ChaseBot",
     "realName" : "ChaseBot"
 }
