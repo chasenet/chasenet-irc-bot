@@ -15,47 +15,56 @@ module.exports = {
 
                     case 'shellcode': {
 
-                        var body = '';
+                        if(command.length < 2) {
 
-                        var fs = require('fs');
+                            ircBot.say(to, 'Usage: ' + config.commandChar + 'shellcode [keyword to search]');
 
-                        var filename = '/tmp/shellcode_' + new Date().getTime() + '.txt';
+                        } else {
 
-                        var stream = fs.createWriteStream(filename);
+                            var body = '';
 
-                        var options = {
-                            hostname: 'www.shell-storm.org',
-                            port: 80,
-                            path: '/api/?s=' + command.slice(1).join('*'),
-                            method: 'GET'
-                        };
+                            var fs = require('fs');
 
-                        var i = 0;
+                            var filename = '/tmp/shellcode_' + new Date().getTime() + '.txt';
 
-                        var req = http.request(options, function(res) {
+                            var stream = fs.createWriteStream(filename);
 
-                            res.setEncoding('utf8');
+                            var options = {
+                                hostname: 'www.shell-storm.org',
+                                port: 80,
+                                path: '/api/?s=' + command.slice(1).join('*'),
+                                method: 'GET'
+                            };
 
-                            res.pipe(stream);
+                            var i = 0;
 
-                            /*
-                                @todo: put everything into a file, then read randomly from said file up to n lines
-                             */
-                            res.on('data', function (chunk) {
-                                i++;
-                                if(i == 1) {
-                                    if(chunk.indexOf('http') > -1) {
-                                        ircBot.say(to, chunk);
+                            var req = http.request(options, function(res) {
+
+                                res.setEncoding('utf8');
+
+                                res.pipe(stream);
+
+                                ircBot.say(to, nick + ': Results in PM (if found)');
+
+                                /*
+                                    @todo: put everything into a file, then read randomly from said file up to n lines
+                                 */
+                                res.on('data', function (chunk) {
+                                    i++;
+
+                                    if(i <= 5) {
+                                        ircBot.say(nick, chunk);
                                     }
-                                }
+                                });
                             });
-                        });
 
-                        req.on('error', function(e) {
-                            ircBot.say(to, 'Failed to retrieve shellcodes');
-                        });
+                            req.on('error', function(e) {
+                                ircBot.say(to, 'Failed to retrieve shellcodes');
+                            });
 
-                        req.end();
+                            req.end();
+                        }
+
                     }
                 }
             }
