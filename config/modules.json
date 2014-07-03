@@ -3,17 +3,28 @@
         "module_name": "core",
         "module_author" : "Richard Clifford",
         "location": "./modules/core/",
-        "module_config": "config/config.json"
+        "module_config": "config/config.json",
+        "commands": {
+            "help": [],
+            "join": ["#channel_name"],
+            "part": ["#channel_name"]
+        }
     },
     {
         "module_name": "blog",
         "module_author" : "Richard Clifford",
         "location": "./modules/blog/",
-        "module_config": "config/config.json"
+        "module_config": "config/config.json",
+        "commands": {
+
+        }
     },
     {
         "module_name": "shell-storm",
         "module_author" : "Richard Clifford",
-        "location": "./modules/shell-storm/"
+        "location": "./modules/shell-storm/",
+        "commands": {
+            "shellcode": ["..."]
+        }
     }
 ]

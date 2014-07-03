@@ -65,6 +65,17 @@ function main() {
 
                         break;
                     }
+                    case 'help': {
+                        modules.forEach(function(item, index) {
+
+                            for (var key in item.commands) {
+                                if (item.commands.hasOwnProperty(key)) {
+                                    ircBot.say(nick, config.commandChar + key + " " + item.commands[key]);
+                                }
+                            }
+
+                        });
+                    }
                 }
 
                 if(command.length >= 2){
