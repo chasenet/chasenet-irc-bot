@@ -5,66 +5,68 @@ module.exports = {
 
             var config = require('../../config/config.json');
 
-            if(text.substr(0,1) == config.commandChar) {
+            if( config.default_ignore_nicks.indexOf( nick.toLowerCase()) == -1) {
 
-                var command = text.split(' ');
+                if(text.substr(0,1) == config.commandChar) {
 
-                var http = require('http');
+                    var command = text.split(' ');
 
-                switch(command[0].substr(1)) {
+                    var http = require('http');
 
-                    case 'shellcode': {
+                    switch(command[0].substr(1)) {
 
-                        if(command.length < 2) {
+                        case 'shellcode': {
 
-                            ircBot.say(to, 'Usage: ' + config.commandChar + 'shellcode [keyword to search]');
+                            if(command.length < 2) {
 
-                        } else {
+                                ircBot.say(to, 'Usage: ' + config.commandChar + 'shellcode [keyword to search]');
 
-                            var body = '';
+                            } else {
 
-                            var fs = require('fs');
+                                var body = '';
 
-                            var filename = '/tmp/shellcode_' + new Date().getTime() + '.txt';
+                                var fs = require('fs');
 
-                            var stream = fs.createWriteStream(filename);
+                                var filename = '/tmp/shellcode_' + new Date().getTime() + '.txt';
 
-                            var options = {
-                                hostname: 'www.shell-storm.org',
-                                port: 80,
-                                path: '/api/?s=' + command.slice(1).join('*'),
-                                method: 'GET'
-                            };
+                                var stream = fs.createWriteStream(filename);
 
-                            var i = 0;
+                                var options = {
+                                    hostname: 'www.shell-storm.org',
+                                    port: 80,
+                                    path: '/api/?s=' + command.slice(1).join('*'),
+                                    method: 'GET'
+                                };
 
-                            var req = http.request(options, function(res) {
+                                var i = 0;
 
-                                res.setEncoding('utf8');
+                                var req = http.request(options, function(res) {
 
-                                res.pipe(stream);
+                                    res.setEncoding('utf8');
 
-                                ircBot.say(to, nick + ': Results in PM (if found)');
+                                    res.pipe(stream);
 
-                                /*
-                                    @todo: put everything into a file, then read randomly from said file up to n lines
-                                 */
-                                res.on('data', function (chunk) {
-                                    i++;
+                                    ircBot.say(to, nick + ': Results in PM (if found)');
 
-                                    if(i <= 5) {
-                                        ircBot.say(nick, chunk);
-                                    }
+                                    /*
+                                        @todo: put everything into a file, then read randomly from said file up to n lines
+                                     */
+                                    res.on('data', function (chunk) {
+                                        i++;
+
+                                        if(i <= 5) {
+                                            ircBot.say(nick, chunk);
+                                        }
+                                    });
                                 });
-                            });
 
-                            req.on('error', function(e) {
-                                ircBot.say(to, 'Failed to retrieve shellcodes');
-                            });
+                                req.on('error', function(e) {
+                                    ircBot.say(to, 'Failed to retrieve shellcodes');
+                                });
 
-                            req.end();
+                                req.end();
+                            }
                         }
-
                     }
                 }
             }
