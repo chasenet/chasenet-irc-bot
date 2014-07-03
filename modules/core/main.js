@@ -44,42 +44,25 @@ module.exports = {
 
                             break;
                         }
-
                         case 'help': {
                             modules.forEach(function(item, index) {
+
                                 for (var key in item.commands) {
                                     if (item.commands.hasOwnProperty(key)) {
                                         ircBot.say(nick , config.commandChar + key + " " + item.commands[key]);
                                     }
                                 }
+
                             });
                         }
                     }
 
                     if(command.length >= 2){
 
-                        switch(command[0].substr(1).toLowerCase()) {
-
-                            case 'ignore' : {
-
-                                if(config.botOwners.indexOf(nick) > -1) {
-
-                                    console.log(["before",config.default_ignore_nicks]);
-
-                                    if(config.botOwners.indexOf(command[1]) == -1) {
-
-                                        config.default_ignore_nicks.push(command[1]);
-
-                                    }
-
-                                    console.log(["after",config.default_ignore_nicks]);
-                                }
-                            }
-                        }
                         // Ensure the channel name starts with a #
                         if(command[1].substr(0,1) == '#') {
 
-                            switch(command[0].substr(1).toLowerCase()) {
+                            switch(command[0].substr(1)) {
 
                                 case 'join': {
 
@@ -109,6 +92,7 @@ module.exports = {
                     }
                 }
             }
+
         });
 
         // Log out the motd

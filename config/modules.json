@@ -7,8 +7,7 @@
         "commands": {
             "help": [],
             "join": ["#channel_name"],
-            "part": ["#channel_name"],
-            "ignore": ["[username]"]
+            "part": ["#channel_name"]
         }
     },
     {
