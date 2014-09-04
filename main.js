@@ -5,7 +5,9 @@ var irc = require('irc'),
 var ircBot = null;
 
 function initModules() {
+
     if(modules.length > 0) {
+
         modules.forEach(function(item) {
 
             console.log('Loading Module: ' + item.module_name);
@@ -13,6 +15,7 @@ function initModules() {
             var module = require(item.location + "main.js");
 
             module.init(ircBot);
+
         });
     }
 }
@@ -24,9 +27,9 @@ function main() {
 
     // Make sure we have an ircBot Client
     if(ircBot != null) {
+
         initModules();
     }
-
 }
 
 main();

@@ -1,10 +1,10 @@
 {
-    "server": "irc.darkscience.net",
+    "server": "irc.psych0tik.net",
     "port": 6697,
     "botName": "ChaseBot",
     "commandChar": "!",
     "botOwners": [
-        "Mantis",
+        "Mantis_",
         "d0gpants",
         "Pillus"
     ],
@@ -23,7 +23,7 @@
     "selfSigned": true,
     "certExpired": true,
     "floodProtection": true,
-    "floodProtectionDelay": 1000,
+    "floodProtectionDelay": 20,
     "sasl": false,
     "stripColors": false,
     "channelPrefixes": "&#",

@@ -27,5 +27,13 @@
         "commands": {
             "shellcode": ["[keyword to search for]"]
         }
+    },
+    {
+        "module_name": "spam",
+        "module_author" : "Richard Clifford",
+        "location": "./modules/spam/",
+        "commands": {
+            "spam": ["[nick] [text to spam with]"]
+        }
     }
 ]
