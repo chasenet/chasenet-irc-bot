@@ -7,6 +7,8 @@ Commands so far:
 ----------------
 * !shellcode [keywords to search for]
 
+* !spam [nick] [number of times] [text to spam with]
+
 * !join #channel
 
 * !part #channel
