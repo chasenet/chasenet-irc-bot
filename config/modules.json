@@ -33,7 +33,7 @@
         "module_author" : "Richard Clifford",
         "location": "./modules/spam/",
         "commands": {
-            "spam": ["[nick] [text to spam with]"]
+            "spam": ["[nick to spam]", "[number of times]", "[text to spam with]"]
         }
     }
 ]
