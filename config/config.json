@@ -1,10 +1,10 @@
 {
-    "server": "irc.psych0tik.net",
+    "server": "irc.darkscience.net",
     "port": 6697,
     "botName": "ChaseBot",
     "commandChar": "!",
     "botOwners": [
-        "Mantis_",
+        "Mantis",
         "d0gpants",
         "Pillus"
     ],

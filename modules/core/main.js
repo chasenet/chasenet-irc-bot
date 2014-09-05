@@ -1,17 +1,34 @@
 module.exports = {
 
     init: function(ircBot) {
+
         var modules = require('../../config/modules.json');
+
         var config = require('../../config/config.json');
+
         // First connection loop to the server
         ircBot.addListener('registered', function(message) {
 
             console.log(message);
         });
 
+        ircBot.addListener('raw', function(message){
+
+            if(message.args && message.args[1]) {
+                if((message.args[1].indexOf('slap') > -1)
+                    && (message.args[1].indexOf(config.botName) > -1)) {
+
+                    ircBot.say(message.args[0], '(╯°□°）╯︵ ┻━┻');
+                    ircBot.say(message.args[0], 'YOU FUCKING WHAT ' + message.nick);
+                    ircBot.say(message.args[0], 'I WILL END YOU!');
+                }
+            }
+
+        });
+
         ircBot.addListener('message', function(nick, to, text, message) {
 
-            if( config.default_ignore_nicks.indexOf( nick.toLowerCase()) == -1) {
+            if(config.default_ignore_nicks.indexOf(nick.toLowerCase()) == -1) {
 
                 if(text.substr(0, 1) == config.commandChar) {
 
@@ -51,10 +68,43 @@ module.exports = {
 
                                     if (item.commands.hasOwnProperty(key)) {
 
-                                        ircBot.say(nick , config.commandChar + key + " " + item.commands[key]);
+                                        ircBot.notice(nick , config.commandChar + key + " " + item.commands[key]);
                                     }
                                 }
                             });
+
+                            break;
+                        }
+
+                        case 'ban':
+                        case 'banhammer': {
+
+                            ircBot.say(to, '(╯°□°）╯︵ ┻━┻');
+
+                            ircBot.say(to, 'I\'m bringing out the banhammer! ▬▬▬▬▬▬▬▋ Ò╭╮Ó');
+
+                            if(config.botOwners.indexOf(nick) > -1) {
+
+                                ircBot.send('MODE', to, '+b', command[1] + '!*@*');
+
+                                ircBot.send('KICK', to, command[1],  'You\'ve been hammered.' );
+
+                            } else {
+
+                                ircBot.say(to, 'Who do you think you are!? Ò╭╮Ó');
+
+                                ircBot.send('mode', to, '+b', nick + '!*@*');
+
+                                ircBot.send('KICK', to, nick,  'You\'ve been hammered.' );
+                            }
+
+                            break;
+                        }
+
+                        case 'unban': {
+                            ircBot.send('mode', to, '-b', command[1] + '!*@*');
+
+                            break;
                         }
                     }
 
@@ -93,7 +143,6 @@ module.exports = {
                     }
                 }
             }
-
         });
 
         // Log out the motd
