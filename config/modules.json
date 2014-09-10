@@ -35,5 +35,10 @@
         "commands": {
             "spam": ["[nick to spam]", "[number of times]", "[text to spam with]"]
         }
+    },
+    {
+        "module_name": "url",
+        "module_author" : "Richard Clifford",
+        "location": "./modules/url/"
     }
 ]

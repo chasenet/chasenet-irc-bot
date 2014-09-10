@@ -38,29 +38,26 @@ module.exports = {
 
                         case 'reload': {
 
-                            // Disabled until further notice.
-                            if(0) {
+                            if(modules.length > 0) {
 
-                                if(modules.length > 0) {
+                                modules.forEach(function(item) {
 
-                                    modules.forEach(function(item) {
+                                    var cacheItem = require.resolve(item.location + "main.js");
 
-                                        var cacheItem = require.resolve(item.location + "main.js");
+                                    if(item.id == cacheItem) {
 
-                                        if(item.id == cacheItem) {
+                                        delete require.cache[cacheItem];
+                                    }
+                                });
 
-                                            delete require.cache[cacheItem];
-                                        }
-                                    });
+                                initModules();
 
-                                    initModules();
-
-                                    console.log("Reinitializing modules");
-                                }
+                                console.log("Reinitializing modules");
                             }
 
                             break;
                         }
+
                         case 'help': {
                             modules.forEach(function(item, index) {
 
