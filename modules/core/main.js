@@ -76,33 +76,49 @@ module.exports = {
                             break;
                         }
 
-                        case 'ban':
                         case 'banhammer': {
 
-                            ircBot.say(to, '(╯°□°）╯︵ ┻━┻');
+                            if(typeof command[1] != 'undefined') {
 
-                            ircBot.say(to, 'I\'m bringing out the banhammer! ▬▬▬▬▬▬▬▋ Ò╭╮Ó');
+                                ircBot.say(to, 'ᕙ(`▽´)ᕗ');
+                                ircBot.say(to, 'I\'m bringing out the banhammer! ▬▬▬▬▬▬▬▋  Ò╭╮Ó');
 
-                            if(config.botOwners.indexOf(nick) > -1) {
+                                if(config.botOwners.indexOf(nick) > -1) {
 
-                                ircBot.send('MODE', to, '+b', command[1] + '!*@*');
+                                    ircBot.send('MODE', to, '+b', command[1] + '!*@*');
 
-                                ircBot.send('KICK', to, command[1],  'You\'ve been hammered.' );
+                                    ircBot.send('KICK', to, command[1],  'You\'ve been hammered.' );
 
-                            } else {
+                                } else {
 
-                                ircBot.say(to, 'Who do you think you are!? Ò╭╮Ó');
+                                    ircBot.say(to, 'Who do you think you are!? Ò╭╮Ó');
 
-                                ircBot.send('mode', to, '+b', nick + '!*@*');
+                                    ircBot.send('mode', to, '+b', nick + '!*@*');
 
-                                ircBot.send('KICK', to, nick,  'You\'ve been hammered.' );
+                                    ircBot.send('KICK', to, nick,  'You\'ve been hammered.' );
+                                }
                             }
 
                             break;
                         }
 
-                        case 'unban': {
+                        case 'ub': {
                             ircBot.send('mode', to, '-b', command[1] + '!*@*');
+
+                            break;
+                        }
+
+                        case 'ccc': {
+                            if(config.botOwners.indexOf(nick) > -1) {
+
+                                config.commandChar = command[1];
+
+                                ircBot.say(to, 'Updated.');
+
+                            } else {
+
+                                ircBot.say(to, 'Denied');
+                            }
 
                             break;
                         }

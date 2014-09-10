@@ -9,7 +9,9 @@
         "Pillus"
     ],
     "channels": [
-        "#bots"
+        "#bots",
+        "#treehouse",
+        "#chasenet"
     ],
     "default_ignore_nicks" : [
         "taylor",
@@ -23,7 +25,7 @@
     "selfSigned": true,
     "certExpired": true,
     "floodProtection": true,
-    "floodProtectionDelay": 20,
+    "floodProtectionDelay": 500,
     "sasl": false,
     "stripColors": false,
     "channelPrefixes": "&#",
