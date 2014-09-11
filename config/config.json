@@ -1,14 +1,17 @@
 {
     "server": "irc.darkscience.net",
     "port": 6697,
-    "botName": "ChaseBot[local]",
+    "botName": "ChaseBot",
     "commandChar": "!",
     "botOwners": [
-        "Mantis"
-
+        "Mantis",
+        "d0gpants",
+        "Pillus"
     ],
     "channels": [
-        "#bots"
+        "#bots",
+        "#treehouse",
+        "#chasenet"
     ],
     "default_ignore_nicks" : [
         "taylor",
