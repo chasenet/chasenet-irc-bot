@@ -105,6 +105,12 @@ module.exports = {
                             break;
                         }
 
+                        case 'ignore': {
+                            config.default_ignore_nicks.push(command[1]);
+
+                            break;
+                        }
+
                         case 'ccc': {
                             if(config.botOwners.indexOf(nick) > -1) {
 
