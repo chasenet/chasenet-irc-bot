@@ -4,6 +4,7 @@
     "description" : "ChaseNet's IRC bot",
     "main" : "main.js",
     "dependencies" : {
-        "irc" : ">=0.3.7"
+        "irc" : ">=0.3.7",
+        "feedsub": ">=0.2.8"
     }
 }
