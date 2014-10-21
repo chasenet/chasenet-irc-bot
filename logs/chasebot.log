@@ -1,0 +1,110 @@
+Loading Module: core
+Loading Module: blog
+Loading Module: shell-storm
+Loading Module: spam
+22 Oct 00:10:47 - Sending irc NICK/USER
+22 Oct 00:10:47 - SEND: NICK ChaseBot
+22 Oct 00:10:48 - SEND: USER ChaseBot 8 * ChaseBot
+22 Oct 00:10:48 - GOT NOTICE from the server: "*** If you are having problems connecting due to ping timeouts, please type /quote PONG AcCyiNLSl] or /raw PONG AcCyiNLSl] now."
+22 Oct 00:10:48 - SEND: PONG AcCyiNLSl]
+{ prefix: 'lavender.darkscience.net',
+  server: 'lavender.darkscience.net',
+  command: 'rpl_welcome',
+  rawCommand: '001',
+  commandType: 'reply',
+  args: 
+   [ 'ChaseBot',
+     'Welcome to the darkscience IRC Network ChaseBot!~ChaseBot@2.124.183.99' ] }
+22 Oct 00:10:50 - [01;31mUnhandled message: { prefix: 'lavender.darkscience.net',
+  server: 'lavender.darkscience.net',
+  command: '042',
+  rawCommand: '042',
+  commandType: 'normal',
+  args: [ 'ChaseBot', '145AAAAQK', 'your unique ID' ] }[0m
+lavender.darkscience.net message of the day
+-   welcome to..
+-   ___________________________________________________________________________
+-  |     .___             __                  .__                             |
+-  |   __| _/____ _______|  | __  ______ ____ |__| ____   ____   ____  ____   |
+-  |  / __ |\__  \\_  __ \  |/ / /  ___// ___\|  |/ __ \ /    \_/ ___\/ __ \  |
+-  | / /_/ | / __ \|  | \/    <  \___ \\  \___|  \  ___/|   |  \  \__\  ___/  |
+-  | \____ |(____  /__|  |__|_ \/____  >\___  >__|\___  >___|  /\___  >___  > |
+-  |      \/     \/           \/     \/     \/        \/     \/     \/    \/  |
+-  |                        [- irc.darkscience.net -]                         |
+-  '--------------------------------------------------------------------------'
+-  lavender.darkscience.net
+-                                                ...the darkscience irc network
+-  ............................................................................
+-  |                                                                          |
+-  |                 Welcome to the darkscience IRC Network                   |
+-  |                                                                          |
+-  |            Serving standard client connections on port 6667              |
+-  |                   and SSL connections on port 6697                       |
+-  |                                                                          |
+-  |               ------------------------------------------                 |
+-  |                              Channels                                    |
+-  |                                                                          |
+-  |          #darkscience - Our main network channel and lobby               |
+-  |          #firehose - Syndicated news feeds                               |
+-  |          #vhost - To request vanity hosts for the network                |
+-  |          #help - Network related help questions or inquiries             |
+-  |                                                                          |
+-  |               -------------------------------------------                |
+-  |                           Network operators                              |
+-  |                                                                          |
+-  |                              o kylef                                     |
+-  |                              o dijit                                     |
+-  |                              o Scub	                                    |
+-  |                                                                          |
+-  |                          Local IRC operators                             |
+-  |                                                                          |
+-  |                              o Derecho                                   |
+-  |                                                                          |
+-  |                        (http://darkscience.net)                          |
+-  |                                                                          |
+-  |               -------------------------------------------                |
+-  |                                NOTICE                                    |
+-  |                                                                          |
+-  |       IRC is a free medium, therefore no person or entity involved       |
+-  |       with darkscience takes any responsibility whatsoever for the       |
+-  |       opinions expressed or the actions taken by users. Absolutely       |
+-  |       no warranty is either expressed or implied.                        |
+-  |                                                                          |
+-  |       Access granted to this server is a privilege. Staff members        |
+-  |       may disconnect clients for any reason. Harrassment and             |
+-  |       annoyance are considered bannable offenses.                        |
+-  |                                                                          |
+-  |       The darkscience IRC Network may do a passive scan on your          |
+-  |       system to ensure it does not provide a security risk to our        |
+-  |       server or its users. If you do not consent to be scanned,          |
+-  |       please disconnect immediately.                                     |
+-  |                                                                          |
+-  |               -------------------------------------------                |
+-  |                                                                          |
+-  |                                                                          |
+-  |                type /rules to read our Network rules                     |
+-  |             type /motd to read this message at any time                  |
+-  `--------------------------------------------------------------------------'
+End of message of the day.
+
+22 Oct 00:10:50 - [01;31mUnhandled message: { prefix: 'lavender.darkscience.net',
+  server: 'lavender.darkscience.net',
+  command: '396',
+  rawCommand: '396',
+  commandType: 'normal',
+  args: 
+   [ 'ChaseBot',
+     'reid-8gt.qa7.124.2.IP',
+     'is now your displayed host' ] }[0m
+22 Oct 00:10:50 - MODE: ChaseBot sets mode: +x
+22 Oct 00:10:50 - GOT NOTICE from the server: "*** You are connected using SSL cipher "DHE-RSA-AES-256-CBC-SHA1""
+22 Oct 00:10:50 - GOT NOTICE from "NickServ": "This nickname is registered. Please choose a different nickname, or identify via /msg NickServ identify <password>."
+22 Oct 00:10:50 - SEND: JOIN #bots
+22 Oct 00:10:50 - SEND: JOIN #treehouse
+22 Oct 00:10:51 - SEND: JOIN #chasenet
+22 Oct 00:10:51 - SEND: PRIVMSG #bots Hola!
+22 Oct 00:10:52 - SEND: MODE #bots
+22 Oct 00:10:52 - SEND: PRIVMSG #treehouse Hola!
+22 Oct 00:10:53 - SEND: MODE #treehouse
+22 Oct 00:10:53 - SEND: PRIVMSG #ChaseNET Hola!
+22 Oct 00:10:54 - SEND: MODE #ChaseNET
