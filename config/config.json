@@ -9,7 +9,7 @@
         "Pillus"
     ],
     "channels": [
-        "#bots"
+        "#bots", "#chasenet", "#treehouse"
     ],
     "default_ignore_nicks" : [
         "taylor",
