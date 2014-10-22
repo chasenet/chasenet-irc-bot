@@ -12,11 +12,11 @@
         }
     },
     {
-        "module_name": "blog",
+        "module_name": "RSS Feed",
         "module_author" : "Richard Clifford",
-        "location": "./modules/blog/",
+        "location": "./modules/rss/",
         "commands": {
-
+		"recache": []
         }
     },
     {

@@ -125,6 +125,15 @@ module.exports = {
 
                             break;
                         }
+                        case 'die': {
+
+                            if(config.botOwners.indexOf(nick) > -1) {
+
+                                ircBot.disconnect(nick + ' killed me :<');
+                            }
+
+                            break;
+                        }
                     }
 
                     if(command.length >= 2){
