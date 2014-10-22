@@ -186,13 +186,13 @@ module.exports = {
 
         // Welcome users on join
         ircBot.addListener('join', function(channel, nick) {
-            if(nick == config.botName) {
-                ircBot.say(channel, 'Hola!');
-            } else {
-                if( config.default_ignore_nicks.indexOf(nick.toLowerCase()) == -1) {
-                    ircBot.say(channel, 'Welcome ' + nick + '!');
-                }
-            }
+            // if(nick == config.botName) {
+            //     ircBot.say(channel, 'Hola!');
+            // } else {
+            //     if( config.default_ignore_nicks.indexOf(nick.toLowerCase()) == -1) {
+            //         ircBot.say(channel, 'Welcome ' + nick + '!');
+            //     }
+            // }
         });
 
         // Auto-join on invite

@@ -1,0 +1,8 @@
+{
+    "author": "Richard Clifford",
+    "authorEmail":"rclifford@cybershade.org",
+    "version": "1.0.0",
+    "rss_feed": "http://forum.chasenet.org/index.php?app=core&module=global&section=rss&type=forums&id=1",
+    "poll_interval": 1,
+    "default_channel": "#chasenet"
+}

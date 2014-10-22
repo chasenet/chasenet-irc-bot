@@ -16,7 +16,8 @@
         "module_author" : "Richard Clifford",
         "location": "./modules/rss/",
         "commands": {
-		"recache": []
+            "recache": [],
+            "feed":[]
         }
     },
     {
