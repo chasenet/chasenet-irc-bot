@@ -5,6 +5,7 @@
     "main" : "main.js",
     "dependencies" : {
         "irc" : ">=0.3.7",
-        "feedsub": ">=0.2.8"
+        "feedsub": ">=0.2.8",
+	"bluebox-ng": ">=0.1.2"
     }
 }

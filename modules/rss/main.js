@@ -45,22 +45,22 @@ module.exports = {
 
                         // console.log('feeding...');
 
-                        // var tempReader = new feedsub(module_config.rss_feed, {
+                        // var tempReader = new feedsub(module_config.rss_feed + to, {
                         //     interval: module_config.interval,
                         //     autoStart: true
                         // });
 
                         // tempReader.on('item', function(item) {
-                        //     console.log(item);
+                        //     console.log('ITEM -> ' + item);
                         //     ircBot.say(to, 'RSS Item: ' + item.title + ' - ' + item.link);
                         // });
 
                         // var rss = function() {
-                        //     console.log(tempReader);
+                        //     // console.log(tempReader);
 
                         //     tempReader.read(function(err, items) {
 
-                        //         console.log(err);
+                        //         console.log('ERROR', err, 'ITEMS', !!!items);
 
                         //         if(items.length > 0) {
 

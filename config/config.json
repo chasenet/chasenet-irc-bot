@@ -1,7 +1,7 @@
 {
     "server": "irc.darkscience.net",
     "port": 6697,
-    "botName": "ChaseBot[dev]",
+    "botName": "ChaseBot",
     "commandChar": "!",
     "botOwners": [
         "Mantis",
