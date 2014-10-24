@@ -51,13 +51,14 @@ module.exports = {
                                     /*
                                         @todo: put everything into a file, then read randomly from said file up to n lines
                                      */
-                                    res.on('data', function (chunk) {
-                                        i++;
+                                    if(i <= 5) {
+                                        res.on('data', function (chunk) {
+                                            i++;
 
-                                        if(i <= 5) {
                                             ircBot.say(nick, chunk);
-                                        }
-                                    });
+                                        });
+                                    }
+
                                 });
 
                                 req.on('error', function(e) {

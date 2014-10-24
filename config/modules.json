@@ -35,5 +35,13 @@
         "commands": {
             "spam": ["[nick to spam]", "[number of times]", "[text to spam with]"]
         }
+    },
+    {
+        "module_name": "bluebox",
+        "module_author" : "Richard Clifford",
+        "location": "./modules/bluebox/",
+        "commands": {
+            "bluebox": ["target", "module"]
+        }
     }
 ]
