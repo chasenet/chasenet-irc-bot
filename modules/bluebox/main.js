@@ -28,7 +28,7 @@ module.exports = {
                                     target : command[1]
                                 };
 
-                                bluebox.runModule(command[2]., moduleOptions, function (err, result) {
+                                bluebox.runModule(command[2], moduleOptions, function (err, result) {
                                     if(err) {
                                         console.log('ERROR:');
                                         console.log(err);
