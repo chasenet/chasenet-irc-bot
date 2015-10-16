@@ -58,12 +58,16 @@ var globals = {
 
     isAdmin: function(nick) {
         
-        if(this.config('default_ignore_nicks').indexOf(nick.toLowerCase()) == -1) {
-
-            if(this.config('botOwners').indexOf(nick) > -1 || this.config('admins').indexOf(nick) > -1) {
-                return true;
-            }   
-        }
+        if(this.config('botOwners').indexOf(nick) > -1 || this.config('admins').indexOf(nick) > -1) {
+            return true;
+        }   
+        return false;
+    },
+    isOwner: function(nick) {
+        
+        if(this.config('botOwners').indexOf(nick) > -1) {
+            return true;
+        }   
         return false;
     },
 

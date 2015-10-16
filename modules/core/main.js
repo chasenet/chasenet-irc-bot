@@ -113,6 +113,7 @@ module.exports = {
             }
         });
 
+        // Change Control Character
         ircBot.addListener('message', function(nick, to, text, message) {
 
             if(!globals.isIgnoredNick(nick)) {
@@ -146,7 +147,7 @@ module.exports = {
 
                 var command = globals.getCommand(text);
 
-                if(globals.isAdmin(nick)) {
+                if(globals.isOwner(nick)) {
 
                     if(command[0] == 'die') {
 

@@ -10,7 +10,12 @@
             "part": ["#channel_name"],
             "ignore": ["nick"],
             "banhammer": ["nick"],
-            "ub": ["nick"]
+            "ub": ["nick"],
+            "mkadmin": ["nick"],
+            "rmadmin": ["nick"],
+            "admins": [],
+            "die": [],
+            "ccc": ["newChar"],
         }
     }
 ]
