@@ -8,9 +8,7 @@
             "help": [],
             "join": ["#channel_name"],
             "part": ["#channel_name"],
-            "ignore": ["nick"],
-            "banhammer": ["nick"],
-            "ub": ["nick"]
+            "ignore": ["nick"]
         }
     }
 ]

@@ -1,20 +1,21 @@
 {
     "server": "irc.darkscience.net",
     "port": 6697,
-    "botName": "ChaseBot",
+    "botName": "Pennywise",
     "commandChar": "!",
     "botOwners": [
-        "Mantis",
-        "d0gpants",
-        "Pillus"
+        "Mantis"
+    ],
+    "admins": [
     ],
     "channels": [
-        "#bots"
+        "#treehouse"
     ],
     "default_ignore_nicks" : [
         "taylor",
         "github",
-        "cardinal"
+        "cardinal",
+        "zeta"
     ],
     "debug": true,
     "showErrors": true,
@@ -28,6 +29,6 @@
     "stripColors": false,
     "channelPrefixes": "&#",
     "messageSplit": 512,
-    "userName" : "ChaseBot",
-    "realName" : "ChaseBot"
+    "userName" : "Pennywise",
+    "realName" : "Pennywise"
 }

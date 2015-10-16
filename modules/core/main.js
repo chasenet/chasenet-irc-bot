@@ -1,10 +1,6 @@
 module.exports = {
-
-    init: function(ircBot) {
-
-        var modules = require('../../config/modules.json');
-
-        var config = require('../../config/config.json');
+   
+    init: function(ircBot, globals) {
 
         // First connection loop to the server
         ircBot.addListener('registered', function(message) {
@@ -12,11 +8,14 @@ module.exports = {
             console.log(message);
         });
 
+
+        // Slap ME?!
         ircBot.addListener('raw', function(message){
 
             if(message.args && message.args[1]) {
+
                 if((message.args[1].indexOf('slap') > -1)
-                    && (message.args[1].indexOf(config.botName) > -1)) {
+                    && (message.args[1].indexOf(globals.config('botName')) > -1)) {
 
                     ircBot.say(message.args[0], '(╯°□°）╯︵ ┻━┻');
                     ircBot.say(message.args[0], 'YOU FUCKING WHAT ' + message.nick);
@@ -26,152 +25,238 @@ module.exports = {
 
         });
 
+
+        // Ban user
+        ircBot.addListener('message', function(nick, to, text, message) {
+            
+            var command = globals.getCommand(text);
+
+            if(command[0] == 'banhammer') {
+
+                if(typeof(command[1]) != 'undefined') {
+
+                    ircBot.say(to, 'ᕙ(`▽´)ᕗ');
+                    ircBot.say(to, 'I\'m bringing out the banhammer! ▬▬▬▬▬▬▬▋  Ò╭╮Ó');
+
+                    if(globals.isAdmin(nick)) {
+
+                        ircBot.send('MODE', to, '+b', command[1] + '!*@*');
+
+                        ircBot.send('KICK', to, command[1],  'You\'ve been hammered.' );
+
+                    } else {
+
+                        ircBot.say(to, 'Who do you think you are!? Ò╭╮Ó');
+
+                        ircBot.send('mode', to, '+b', nick + '!*@*');
+
+                        ircBot.send('KICK', to, nick,  'You\'ve been hammered.' );
+                    }
+                }
+            }
+
+        });
+
+        // List Help Options
         ircBot.addListener('message', function(nick, to, text, message) {
 
-            if(config.default_ignore_nicks.indexOf(nick.toLowerCase()) == -1) {
+            var modules = require('../../config/modules.json');
 
-                if(text.substr(0, 1) == config.commandChar) {
+            if(!globals.isIgnoredNick(nick)) {
 
-                    var command = text.split(' ');
+                if(globals.getCommand(text) == 'help') {
 
-                    switch(command[0].substr(1)) {
+                    modules.forEach(function(item, index) {
 
-                        case 'reload': {
+                        for (var key in item.commands) {
 
-                            if(modules.length > 0) {
+                            if (item.commands.hasOwnProperty(key)) {
 
-                                modules.forEach(function(item) {
-
-                                    var cacheItem = require.resolve(item.location + "main.js");
-
-                                    if(item.id == cacheItem) {
-
-                                        delete require.cache[cacheItem];
-                                    }
-                                });
-
-                                initModules();
-
-                                console.log("Reinitializing modules");
+                                ircBot.say(nick, globals.config('commandChar') + key + " " + item.commands[key]);
                             }
-
-                            break;
                         }
+                    });
 
-                        case 'help': {
-                            modules.forEach(function(item, index) {
+                }
+            }
+        });
 
-                                for (var key in item.commands) {
+        // Unban
+        ircBot.addListener('message', function(nick, to, text, message) {
 
-                                    if (item.commands.hasOwnProperty(key)) {
+            if(globals.isAdmin(nick)) {
 
-                                        ircBot.notice(nick , config.commandChar + key + " " + item.commands[key]);
-                                    }
-                                }
-                            });
+                command = globals.getCommand(text);
+                
+                if(command[0] == 'ub' && command.length > 1){
+                    ircBot.say(to, 'Awwh, do we have to? :(');
+                    ircBot.send('mode', to, '-b', command[1] + '!*@*');
+                }
+            }
+        });
 
-                            break;
+
+        // Ignore a user
+        ircBot.addListener('message', function(nick, to, text, message){
+
+             if(globals.isAdmin(nick)) {
+
+                var command = globals.getCommand(text);
+
+                if(command[0] == 'ignore' && command.length > 1) {
+
+                    if(globals.config('default_ignore_nicks').indexOf(command[1]) == -1) {
+
+                        globals.setConfig('default_ignore_nicks', command[1]);
+                    } 
+                }
+            }
+        });
+
+        ircBot.addListener('message', function(nick, to, text, message) {
+
+            if(!globals.isIgnoredNick(nick)) {
+
+                var command = globals.getCommand(text);
+
+                if(command[0] == 'ccc'){
+
+                    if(globals.isAdmin(nick)) {
+
+                        if(command.length > 1) {
+
+                            globals.setConfig('commandChar', command[1]);
+
+                            ircBot.say(to, 'Updated.');
+                        } else {
+                            ircBot.say(to, 'Requires 2 arguments.');
                         }
+                    } else {
 
-                        case 'banhammer': {
+                        ircBot.say(to, 'Denied');
+                    }
+                }
+            }
+        });
 
-                            if(typeof command[1] != 'undefined') {
+        // Disconnect
+        ircBot.addListener('message', function(nick, to, text, message) {
 
-                                ircBot.say(to, 'ᕙ(`▽´)ᕗ');
-                                ircBot.say(to, 'I\'m bringing out the banhammer! ▬▬▬▬▬▬▬▋  Ò╭╮Ó');
+            if(!globals.isIgnoredNick(nick)) {
 
-                                if(config.botOwners.indexOf(nick) > -1) {
+                var command = globals.getCommand(text);
 
-                                    ircBot.send('MODE', to, '+b', command[1] + '!*@*');
+                if(globals.isAdmin(nick)) {
 
-                                    ircBot.send('KICK', to, command[1],  'You\'ve been hammered.' );
+                    if(command[0] == 'die') {
 
-                                } else {
+                        ircBot.disconnect(nick + ' killed me :<');
+                    }
+                }
+            }
+        });     
 
-                                    ircBot.say(to, 'Who do you think you are!? Ò╭╮Ó');
+        // Join 
+        ircBot.addListener('message', function(nick, to, text, message) {
 
-                                    ircBot.send('mode', to, '+b', nick + '!*@*');
+            if(!globals.isIgnoredNick(nick)) {
 
-                                    ircBot.send('KICK', to, nick,  'You\'ve been hammered.' );
-                                }
-                            }
+                var command = globals.getCommand(text);
 
-                            break;
-                        }
+                if(globals.isAdmin(nick)) {
 
-                        case 'ub': {
-                            ircBot.send('mode', to, '-b', command[1] + '!*@*');
+                    if(command[0] == 'join') {
 
-                            break;
-                        }
+                        ircBot.join(command[1]);
+                    }
+                }
+            }
+        });
+        
 
-                        case 'ignore': {
-                            config.default_ignore_nicks.push(command[1]);
+        // Part 
+        ircBot.addListener('message', function(nick, to, text, message) {
 
-                            break;
-                        }
+            if(!globals.isIgnoredNick(nick)) {
 
-                        case 'ccc': {
-                            if(config.botOwners.indexOf(nick) > -1) {
+                var command = globals.getCommand(text);
 
-                                config.commandChar = command[1];
+                if(globals.isAdmin(nick)) {
 
-                                ircBot.say(to, 'Updated.');
+                    if(command[0] == 'part') {
 
-                            } else {
+                        if(command.length > 1) {
 
-                                ircBot.say(to, 'Denied');
-                            }
-
-                            break;
-                        }
-                        case 'die': {
-
-                            if(config.botOwners.indexOf(nick) > -1) {
-
-                                ircBot.disconnect(nick + ' killed me :<');
-                            }
-
-                            break;
+                            ircBot.part(command[1]);
+                        } else {
+                            
+                            ircBot.part(to);
                         }
                     }
+                }
+            }
+        });  
 
-                    if(command.length >= 2){
+        // Make Admin 
+        ircBot.addListener('message', function(nick, to, text, message) {
 
-                        // Ensure the channel name starts with a #
-                        if(command[1].substr(0,1) == '#') {
+            if(!globals.isIgnoredNick(nick)) {
 
-                            switch(command[0].substr(1)) {
+                var command = globals.getCommand(text);
 
-                                case 'join': {
+                if(globals.isAdmin(nick)) {
 
-                                    ircBot.join(command[1]);
+                    if(command[0] == 'mkadmin') {
+                        
+                        if(command.length > 1) {
 
-                                    break;
-                                }
+                            globals.setConfig('admins', command[1]);
 
-                                case 'part' : {
+                            ircBot.say(to, command[1] + ' you are now an admin');
+                        }
+                    }
+                }
+            }
+        });       
 
-                                    if(config.botOwners.indexOf( nick ) > -1) {
+        // Remove Admin 
+        ircBot.addListener('message', function(nick, to, text, message) {
 
-                                        if(config.channels.indexOf(command[1]) > -1){
+            if(!globals.isIgnoredNick(nick)) {
 
-                                            ircBot.part(command[1]);
-                                        }
+                var command = globals.getCommand(text);
 
-                                    } else if(config.channels.indexOf(command[1]) == -1) {
+                if(globals.isAdmin(nick)) {
 
-                                        ircBot.part(command[1]);
-                                    }
+                    if(command[0] == 'rmadmin') {
+                        
+                        if(command.length > 1) {
 
-                                    break;
-                                }
-                            }
+                            globals.setConfig('admins', command[1], 'remove');
+
+                            ircBot.say(to, command[1] + ' you are no longer an admin');
                         }
                     }
                 }
             }
         });
+
+        // List Admins 
+        ircBot.addListener('message', function(nick, to, text, message) {
+
+            if(!globals.isIgnoredNick(nick)) {
+
+                var command = globals.getCommand(text);
+
+                if(command[0] == 'admins') {
+                    var owners = globals.config('botOwners').join(', ');
+                    var admins = globals.config('admins').join(', ');
+                    ircBot.say(to, 'Owners: ' + owner + '; Current Admins: ' + owners);
+                }                
+            }
+        });
+
+                    
 
         // Log out the motd
         ircBot.addListener('motd', function(message) {
@@ -186,10 +271,10 @@ module.exports = {
 
         // Welcome users on join
         ircBot.addListener('join', function(channel, nick) {
-            // if(nick == config.botName) {
+            // if(nick == globals.config('botName')) {
             //     ircBot.say(channel, 'Hola!');
             // } else {
-            //     if( config.default_ignore_nicks.indexOf(nick.toLowerCase()) == -1) {
+            //     if( globals.config('default_ignore_nicks').indexOf(nick.toLowerCase()) == -1) {
             //         ircBot.say(channel, 'Welcome ' + nick + '!');
             //     }
             // }
