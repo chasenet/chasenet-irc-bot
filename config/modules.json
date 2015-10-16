@@ -15,7 +15,7 @@
             "rmadmin": ["nick"],
             "admins": [],
             "die": [],
-            "ccc": ["newChar"],
+            "ccc": ["newChar"]
         }
     }
 ]
