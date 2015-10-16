@@ -252,7 +252,7 @@ module.exports = {
                 if(command[0] == 'admins') {
                     var owners = globals.config('botOwners').join(', ');
                     var admins = globals.config('admins').join(', ');
-                    ircBot.say(to, 'Owners: ' + owner + '; Current Admins: ' + owners);
+                    ircBot.say(to, 'Owners: ' + owners + '; Current Admins: ' + admins);
                 }                
             }
         });
